@@ -1,0 +1,10 @@
+# comment
+22 tcp
+23 tcp
+69 udp
+
+4569 udp
+5060 udp
+80 tcp
+   5060    tcp
+

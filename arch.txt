@@ -1,0 +1,32 @@
+inputs: interface, xml config with tcp and udp ports, xml config with
+   mac address vendor mappings
+
+Coming up with lists to scan.
+get interface's ip and netmask
+get network name
+start at network name + 1
+add 1 until ip & netmask != network
+
+for each ip add it with udp ports from config and tcp ports from config 
+-> udp port list
+-> tcp port list
+
+send dummy udp request (raw socket?) (close socket)
+
+tcp 
+  - open socket 
+  - map socket fd to ip and port
+  - set to non-blocking
+  - connect
+  - process connect return value (hopefully EAGAIN)
+
+lookup up mac addresses in arp table
+
+select on pcap and connect sockets
+(maybe select on connect sockets, check pcap)
+if pcap fd, pcap_next if icmp, destination port unreachable, decode
+  ip header is icmp body and look up ip and port(s) and flag as close
+  if udp response to sending port, look up ip and port and flag as open
+  
+
+
